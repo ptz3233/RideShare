@@ -23,21 +23,21 @@
 		}
 	
 		else{
-			try {
+			
 
 				//Create a connection string
-				String url = "jdbc:mysql://project336db.cdofdlj5v592.us-west-2.rds.amazonaws.com:3306/UserPass";
+				String url = "jdbc:mysql://example.cl8qfbhvsols.us-east-1.rds.amazonaws.com:3306/RideShare";
 				//Load JDBC driver - the interface standardizing the connection procedure. Look at WEB-INF\lib for a mysql connector jar file, otherwise it fails.
 				Class.forName("com.mysql.jdbc.Driver");
 				//Create a connection to your DB
-				Connection con = DriverManager.getConnection(url, "nkonopkaMaster", "8mas7ter6pas5");
+				Connection con = DriverManager.getConnection(url, "root", "password");
 
 				Statement stmt = con.createStatement();
 				String entity = request.getParameter("username");
 				String entity2 = request.getParameter("password");
-				String str = "SELECT * FROM usernamePassword WHERE username = \'" + entity +"\'";
+				String str = "SELECT * FROM users WHERE userID = \'" + entity +"\'";
 				ResultSet result = stmt.executeQuery(str);
-
+				//out.println(str);
 				int counter=0;
 				String retrievedPass = null;
 				while (result.next()) {
@@ -59,8 +59,7 @@
 				//close the connection.
 				con.close();
 
-			} catch (Exception e) {
-			}
+			
 		}
 		
 	%>

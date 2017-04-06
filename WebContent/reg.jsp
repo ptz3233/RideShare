@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1>Register Here</h1>
-        <center>
+        <div align="center">
             <h2>Registration</h2>
             <form action="regQuery.jsp" method="post">
             <br/>Username:<input type="text" name="username">
@@ -28,7 +28,7 @@
             <br/><input type="submit" value="Submit">
             </form>
         
-        </center>
+        </div>
 
 
 

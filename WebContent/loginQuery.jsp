@@ -53,7 +53,8 @@
 					out.print("Wrong password.");
 				}
 				else{
-					out.print("Login successful.");
+					session.setAttribute("user", request.getParameter("username"));
+					response.sendRedirect("home.jsp");
 				}
 				
 				//close the connection.

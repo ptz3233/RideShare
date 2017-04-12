@@ -6,11 +6,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Manage Account</title>
 </head>
-<body><% String x = "test"; %>
+<body>
+	
+	<%String registration = "10-120";
+	request.setAttribute("registration", registration);%>
 	<h1>Manage Account</h1>
         <div align="center">
             <form action="manageAccountQuery.jsp" method="post">
-            	<br/>Name (optional):<input type="text" name="name" value=<% x %>>
+            	<br/>Name (optional):<input type="text" name="name"  value="${user}">
             	<br/>Phone Number (optional):<input type="text" name="phone">
 				<br/>Address (optional):<input type ="text" name ="address">
       			<br>

@@ -72,7 +72,7 @@
 					
 
 					//Make an insert statement for the users table:
-					String insert = "INSERT INTO users(userID, password, ruEmail) " + "VALUES (?, ?, ?)";
+					String insert = "INSERT INTO users(userID, password, ruEmail,type) " + "VALUES (?, ?, ?, ?)";
 					//Create a Prepared SQL statement allowing you to introduce the parameters of the query
 					PreparedStatement ps = con.prepareStatement(insert);
 
@@ -80,6 +80,7 @@
 					ps.setString(1, request.getParameter("username"));
 					ps.setString(2, request.getParameter("password"));
 					ps.setString(3, request.getParameter("email"));
+					ps.setString(4, "endUser");
 					//Run the query against the DB
 					ps.executeUpdate();
 					

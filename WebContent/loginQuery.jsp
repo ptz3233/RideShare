@@ -40,9 +40,11 @@
 				//out.println(str);
 				int counter=0;
 				String retrievedPass = null;
+				String userStatus = null;
 				while (result.next()) {
 					counter++;
 					retrievedPass = result.getString("password");
+					userStatus = result.getString("type");
 				}
 				
 				
@@ -54,7 +56,16 @@
 				}
 				else{
 					session.setAttribute("user", request.getParameter("username"));
+				}
+				
+				System.out.print(userStatus);
+				
+				if(userStatus.compareTo("endUser")==0){
 					response.sendRedirect("home.jsp");
+				}else if(userStatus.compareTo("admin")==0){
+					response.sendRedirect("adminlogin.html");
+				}else if(userStatus.compareTo("systemSupport")==0){
+					response.sendRedirect("SSlogin.jsp");
 				}
 				
 				//close the connection.

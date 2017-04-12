@@ -50,15 +50,18 @@
 				
 				if(counter==0){
 					out.print("That username does not exist!");
+					response.sendRedirect("loginFail.html");
 				}
+				
 				else if(entity2.compareTo(retrievedPass)!=0){
 					out.print("Wrong password.");
+					return;
 				}
 				else{
 					session.setAttribute("user", request.getParameter("username"));
-				}
 				
-				System.out.print(userStatus);
+				
+				//System.out.print(userStatus);
 				
 				if(userStatus.compareTo("endUser")==0){
 					response.sendRedirect("home.jsp");
@@ -67,7 +70,7 @@
 				}else if(userStatus.compareTo("systemSupport")==0){
 					response.sendRedirect("SSlogin.jsp");
 				}
-				
+				}
 				//close the connection.
 				con.close();
 

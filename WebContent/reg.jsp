@@ -15,9 +15,9 @@
             <br/>RU Email:<input type="text" name="email">
             <br/>Password:<input type="password" name="password">
             <br/>Confirm Password:<input type="password" name="conpassword">
-            <br/>Name:<input type="text" name="name">
-            <br/>Phone Number:<input type="text" name="phone">
-			<br/>Address:<input type ="text" name ="address">
+            <br/>Name (optional):<input type="text" name="name">
+            <br/>Phone Number (optional):<input type="text" name="phone">
+			<br/>Address (optional):<input type ="text" name ="address">
       		<br>
 			<input type="checkbox" name="forwardToEmail" value="fEmail">Forward messages to email<br>
 			<input type="checkbox" name="forWardToTest" value="fText">Forward messages to phone text messages<br> 

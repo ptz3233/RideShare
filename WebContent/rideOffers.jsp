@@ -12,11 +12,22 @@
         <div align="center">
             <h2>Ride offer</h2>
             <form action="offerQuery.jsp" method="post">
-            <br/>Date<input type="text" name="date">
-            <br/>Time:<input type="text" name="time">
-            <br/>Pick up location:<input type="text" name="pickUpLocation">
-            <br/>Drop off location<input type="text" name="dropOffLocation">
-           
+            <br/>Date<input type="date" name="date">
+            <br/>Time:<input type="time" name="time">
+            <br/>Pick up location: <select name="pickUpLocation">
+ 	 			<option value="Cook">Cook</option>
+ 				 <option value="Douglass">Douglass</option>
+  				<option value="College Ave.">College Ave.</option>
+ 				 <option value="Livingston">Livingston</option>
+ 				 <option value="Busch">Busch</option>
+				</select>
+            <br/>Drop off location<select name="dropOffLocation">
+ 	 			<option value="Cook">Cook</option>
+ 				 <option value="Douglass">Douglass</option>
+  				<option value="College Ave.">College Ave.</option>
+ 				 <option value="Livingston">Livingston</option>
+ 				 <option value="Busch">Busch</option>
+				</select>
             <br/>Car Name:<input type "text" name="carName">
             
             <br/><input type="submit" value="Submit">

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ page import="java.io.*,java.util.date,java.util.*,java.sql.*"%>
+<%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
 
 
@@ -17,7 +17,7 @@
 	String pickUpLocation = request.getParameter("pickUpLocation");
 	String dropOffLocation = request.getParameter("dropOffLocation");
 	String carName = request.getParameter("carName");
-	String driver = session.getAttribute("user");
+	String driver = session.getAttribute("user").toString();
 	
 	
 	
@@ -51,6 +51,24 @@
 	
 	
 	ps.setString(2, date);
+	
+	ps.setString(3, time);
+	
+	ps.setString(4, pickUpLocation);
+	
+	ps.setString(5, dropOffLocation);
+	
+	ps.setString(6, driver);
+	
+	ps.setString(7, carName);
+	
+	ps.executeUpdate();
+	
+	con.close();
+	
+	out.print("Offer succesfully submitted");
+	
+	
 	
 	
 	

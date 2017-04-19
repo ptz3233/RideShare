@@ -100,7 +100,7 @@
 	                	ps2.setString(5, "0");
 	                }
 					
-					out.println(request.getParameter("forwardToEmail"));
+					//out.println(request.getParameter("forwardToEmail"));
 					
 					if(request.getParameter("forwardToEmail")!="fEmail"){
 						ps2.setString(6, "1");

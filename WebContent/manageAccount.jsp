@@ -93,7 +93,7 @@
 				<input type="checkbox" name="forwardToEmail" value="fEmail">Forward messages to email<br>
 				<input type="checkbox" name="forwardToText" value="fText">Forward messages to phone text messages<br> 
 				<br>
-			  	<input type="radio" name="infoVis" value="t"> Make info visible to other users.<br>
+			  	<input type="radio" name="infoVis" value="t" checked> Make info visible to other users.<br>
  				<input type="radio" name="infoVis" value="f"> Don't make info visible to other users.<br>
             
             <br/><input type="submit" value="Change Settings">

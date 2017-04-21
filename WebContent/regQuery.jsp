@@ -95,24 +95,24 @@
 					ps2.setString(4, request.getParameter("phone"));
 					
 					if(request.getParameter("infoVis").equals("t")) {
-	                    ps2.setString(5, "1");
+	                    ps2.setString(7, "1");
 	                }else{
-	                	ps2.setString(5, "0");
+	                	ps2.setString(7, "0");
 	                }
 					
 					//out.println(request.getParameter("forwardToEmail"));
 					
-					if(request.getParameter("forwardToEmail")!="fEmail"){
-						ps2.setString(6, "1");
+					if(request.getParameter("forwardToEmail")!=null){
+						ps2.setString(5, "1");
 					}else{
-						ps2.setString(6, "0");
+						ps2.setString(5, "0");
 					}
 					
 					
-					if(request.getParameter("forwardToTest")!="fText"){
-						ps2.setString(7, "1");
+					if(request.getParameter("forwardToTest")!=null){
+						ps2.setString(6, "1");
 					}else{
-						ps2.setString(7, "0");
+						ps2.setString(6, "0");
 					}
 					
 					ps2.executeUpdate();
@@ -130,7 +130,7 @@
 					else{
 						out.print("Account creation failed?!");
 					}
-					
+					out.println("<br><a href=\"index.jsp\">Return to Login page</a>");
 					
 				}
 				

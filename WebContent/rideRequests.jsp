@@ -8,5 +8,37 @@
 </head>
 <body>
 
+<h1>Request a ride here</h1>
+        <div align="center">
+            <h2>Ride offer</h2>
+            <form action="requestQuery.jsp" method="post">
+            <br/>Date: (Format: MM/DD/YYYY)<input type="date" name="date">
+            <br/>Time: (Format: HH:MM AM/PM)<input type="time" name="time">
+            <br/>Pick up location: <select name="pickUpLocation">
+ 	 			<option value="Cook">Cook</option>
+ 				 <option value="Douglass">Douglass</option>
+  				<option value="College Ave.">College Ave.</option>
+ 				 <option value="Livingston">Livingston</option>
+ 				 <option value="Busch">Busch</option>
+				</select>
+            <br/>Drop off location<select name="dropOffLocation">
+ 	 			<option value="Cook">Cook</option>
+ 				 <option value="Douglass">Douglass</option>
+  				<option value="College Ave.">College Ave.</option>
+ 				 <option value="Livingston">Livingston</option>
+ 				 <option value="Busch">Busch</option>
+				</select>
+            
+            <br/><input type="submit" value="Submit">
+            </form>
+        
+        </div>
+
+
+
+
+
+
+
 </body>
 </html>

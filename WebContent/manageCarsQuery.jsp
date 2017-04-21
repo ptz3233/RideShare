@@ -20,6 +20,62 @@
 				//Create a connection to your DB
 				Connection con = DriverManager.getConnection(url, "root", "password");
 
+				
+				boolean properAddName=true;
+				boolean properAddCap=true;
+				boolean existing=false;
+				int capp=0;
+				String capa="";
+				if(request.getParameter("carName")==null||request.getParameter("carName").compareTo("")==0)
+					properAddName=false;
+				try {
+			        capp=Integer.parseInt(request.getParameter("cap"));
+			        capa=Integer.toString(capp);
+			    }
+			    catch( Exception e ) {
+			        properAddCap=false;
+			    }
+				
+				Statement stmtA = con.createStatement();
+				String entityA = (String)session.getAttribute("user");
+				String strA = "SELECT * FROM car WHERE ownedBy = \'" + entityA +"\' AND carName = \'" + request.getParameter("carName") +"\'";
+				ResultSet resultA = stmtA.executeQuery(strA);
+				
+				int counterA=0;
+				while (resultA.next()) {
+					counterA++;
+				}
+				if(counterA>0){
+					existing=true;
+				}
+				
+				
+				
+				if(properAddName&&properAddCap&&!existing){
+					String insert = "INSERT INTO car(carName, capacity, ownedBy) " + "VALUES (?, ?, ?)";
+					//Create a Prepared SQL statement allowing you to introduce the parameters of the query
+					PreparedStatement ps = con.prepareStatement(insert);
+
+					//Add parameters of the query. Start with 1, the 0-parameter is the INSERT statement itself
+					ps.setString(1, request.getParameter("carName"));
+					ps.setInt(2, capp);
+					ps.setString(3, (String)session.getAttribute("user"));
+					//Run the query against the DB
+					ps.executeUpdate();
+				}
+				else{
+					out.print("<p style=\"color:red;\">Error in submission form: ");
+					if(!properAddName)
+						out.print("<br>Must provide a name for the car!");
+					else if(existing)
+						out.print("<br>That car name is already in use!");
+					if(!properAddCap)
+						out.print("<br>Must provide the car's passenger capacity as an integer value! ");
+					out.print("</p><br><br>");
+				}
+				
+						
+				
 				Statement stmt = con.createStatement();
 				String entity = (String)session.getAttribute("user");
 				String str = "SELECT * FROM car WHERE ownedBy = \'" + entity +"\'";
@@ -50,17 +106,9 @@
 				con.close();
 
 	%>
-
-
-	<h1>Register a Car</h1>
+		<br><br>
         <div align="center">
-            <form action="manageCarsQuery.jsp" method="post">
-            	<br/>Car Name:<input type="text" name="carName">
-            	<br/>Passenger Capacity:<input type="text" name="cap">
-      			<br>            
-            <br/><input type="submit" value="Add New Car">
-            </form>
-        	<br>
+            <a href="manageCars.jsp">Add Another Car</a><br><br>
         	<a href="home.jsp">Return to Dashboard</a>
         </div>
 

@@ -19,7 +19,14 @@
 	String carName = request.getParameter("carName");
 	String driver = session.getAttribute("user").toString();
 	
+String recur = request.getParameter("recurring");
 	
+	boolean recurring;
+	if(recur==null){
+		recurring = false;
+	}else{
+		recurring = true;
+	}
 	
 	String url = "jdbc:mysql://example.cl8qfbhvsols.us-east-1.rds.amazonaws.com:3306/RideShare";
 	
@@ -43,7 +50,7 @@
 	
 	id++;
 	
-	String insert = "INSERT INTO rideOffers(offerID, offerDate, pickUpTime,pickUpLocation, dropOffLocation, driver, carName) " + "VALUES (?, ?, ?, ?,?,?,?)";
+	String insert = "INSERT INTO rideOffers(offerID, offerDate, pickUpTime,pickUpLocation, dropOffLocation, driver, carName, recurring) " + "VALUES (?, ?, ?, ?,?,?,?, ?)";
 	PreparedStatement ps = con.prepareStatement(insert);
 	
 	ps.setInt(1, id);
@@ -61,6 +68,8 @@
 	ps.setString(6, driver);
 	
 	ps.setString(7, carName);
+	
+	ps.setBoolean(8, recurring);
 	
 	ps.executeUpdate();
 	

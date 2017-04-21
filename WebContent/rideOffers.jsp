@@ -29,7 +29,8 @@
  				 <option value="Busch">Busch</option>
 				</select>
             <br/>Car Name:<input type "text" name="carName">
-            
+            <br>
+            <input type="checkbox" name="recurring" value="Recurring">Recurring Request?<br>
             <br/><input type="submit" value="Submit">
             </form>
         

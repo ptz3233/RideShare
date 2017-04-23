@@ -75,7 +75,7 @@
 	
 	con.close();
 	
-	out.print("Request succesfully submitted");
+	response.sendRedirect("rideMarchRequest.jsp");
 	
 	
 	

@@ -74,8 +74,7 @@ String recur = request.getParameter("recurring");
 	ps.executeUpdate();
 	
 	con.close();
-	
-	out.print("Offer succesfully submitted");
+	response.sendRedirect("rideMatch.jsp");
 	
 	
 	

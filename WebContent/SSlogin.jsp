@@ -14,13 +14,13 @@
 
             <div align="center">
 	            <form action="resetPassQuery.jsp" method="post">
-	            	Reset User Password
+	            	<div style = "font-weight: bold">Reset User Password</div>
 		            User ID:<input type="text" name="username"><br>
 		            <input type="submit" value="Submit"><br>
 	            </form>
 	            <br>
 	            <form action="lockoutUserQuery.jsp" method="post">
-	            	Lock Out a User
+	            	<div style = "font-weight: bold">Lock Out a User</div>
 		            Username:<input type="text" name="username"><br>
 		            Lock Out Time Span:<select name="timespan">
 						<option value="day">Day</option>
@@ -34,7 +34,7 @@
 	            </form>
 	            <br>
 	            <form action="addAdQuery.jsp" method="post">
-	            	Add an Advertisement
+	            	<div style = "font-weight: bold">Add an Advertisement</div>
 		            Ad Name:<input type="text" name="adname"><br>
 		            Ad Buyer:<input type="text" name="buyer"><br>
 		            <input type="submit" value="Submit"><br>

@@ -32,22 +32,24 @@
 			Statement stmt = con.createStatement();
 			String entity = request.getParameter("adname");
 			String entity2 = request.getParameter("buyer");
+			String entity3 = request.getParameter("message");
 			
 			//Make an insert statement for the users table:
-			String insert = "INSERT INTO ads(adName, buyer, timesDisplayed) " + "VALUES (?, ?, ?)";
+			String insert = "INSERT INTO ads(adName, buyer, adMessage, timesDisplayed) " + "VALUES (?, ?, ?, ?)";
 			//Create a Prepared SQL statement allowing you to introduce the parameters of the query
 			PreparedStatement ps = con.prepareStatement(insert);
 
 			//Add parameters of the query. Start with 1, the 0-parameter is the INSERT statement itself
 			ps.setString(1, entity);
 			ps.setString(2, entity2);
-			ps.setInt(3, 0);
+			ps.setString(3, entity3);
+			ps.setInt(4, 0);
 			//Run the query against the DB
 			ps.executeUpdate();
 			
-			out.print("Advertisement added to database");
+			out.print("Advertisement added to database<br><a href=\"SSlogin.jsp\">Return to Dashboard</a>");
+			con.close();
 		}
-	
 	%>
 </body>
 </html>

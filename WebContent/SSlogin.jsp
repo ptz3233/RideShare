@@ -37,10 +37,12 @@
 	            	<div style = "font-weight: bold">Add an Advertisement</div>
 		            Ad Name:<input type="text" name="adname"><br>
 		            Ad Buyer:<input type="text" name="buyer"><br>
+		            Ad Message:<br>
+		            <textarea name = "message" rows = 5></textarea><br>
 		            <input type="submit" value="Submit"><br>
 	            </form>
 	            <br>
-	            <a href="SSadverts.jsp">Manage Advertisements</a><br>
+	            <a href="SSadverts.jsp">Advertisement Database</a><br>
 	            <a href="index.jsp">Logout</a>
 			</div>
 

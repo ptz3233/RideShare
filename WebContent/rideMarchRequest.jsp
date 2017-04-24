@@ -97,7 +97,12 @@
 		appendC = "UPDATE Ride set passengers = concat (passengers, \" " + requester + "\" ) where rideID = " +Integer.toString(rideid);
 		
 		stmt4.executeUpdate(appendC);
+		String delrequest = ("DELETE FROM rideRequest WHERE requestID = ?");
+		PreparedStatement del1 = con.prepareStatement(delrequest);
+
 		
+		del1.setString(1, rID);
+		del1.executeUpdate();
 		
 		
 		

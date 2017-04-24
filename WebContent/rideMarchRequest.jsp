@@ -83,8 +83,25 @@
 		del2.executeUpdate();
 		
 	}
+	String findMatchRide = "Select * from Ride r WHERE  r.rideDate = \"" + requestDate + "\" AND r.pickUpTime =\"" +pickUpTime + "\" AND r.dropOffLocation = \"" + dropOffLocation +  "\" and r.pickUpLocation = \"" + pickUpLocation +"\" LIMIT 1";
 	
+	Statement stmt3 = con.createStatement();
 	
+	ResultSet r3 = stmt3.executeQuery(findMatchRide);
+	String appendC = new String();
+	int rideid;
+	while(r3.next()){
+		rideid = r3.getInt("rideID");
+		
+		Statement stmt4 = con.createStatement();
+		appendC = "UPDATE Ride set passengers = concat (passengers, \" " + requester + "\" ) where rideID = " +Integer.toString(rideid);
+		
+		stmt4.executeUpdate(appendC);
+		
+		
+		
+		
+	}
 
 	out.println("Request succesfully submitted. Ride match database updated");
 	

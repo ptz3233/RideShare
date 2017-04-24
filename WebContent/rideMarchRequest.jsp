@@ -50,10 +50,10 @@
 	
 	ResultSet r2= stmt2.executeQuery(findMatch);
 	//out.println(r2.getString("requester"));
-	
+	int ridefound = 0;
 	
 	while (r2.next()){
-		
+		ridefound = 1;
 		String newRide = "INSERT INTO Ride (rideDate, pickUpTime, pickUpLocation, driver, passengers, carName, dropOffLocation)" + "VALUES(?,?,?,?,?,?,?)";
 		PreparedStatement ps = con.prepareStatement(newRide);
 		ps.setString(1, requestDate);
@@ -83,6 +83,8 @@
 		del2.executeUpdate();
 		
 	}
+	
+	if(ridefound == 0){
 	String findMatchRide = "Select * from Ride r WHERE  r.rideDate = \"" + requestDate + "\" AND r.pickUpTime =\"" +pickUpTime + "\" AND r.dropOffLocation = \"" + dropOffLocation +  "\" and r.pickUpLocation = \"" + pickUpLocation +"\" LIMIT 1";
 	
 	Statement stmt3 = con.createStatement();
@@ -107,7 +109,7 @@
 		
 		
 	}
-
+	}
 	out.println("Request succesfully submitted. Ride match database updated");
 	
 

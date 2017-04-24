@@ -53,7 +53,7 @@
 					
 					//second query to get rating
 					Statement stmtA = con.createStatement();
-					String strA = "SELECT AVG(rating) FROM userFeedback";
+					String strA = "SELECT AVG(rating) FROM userFeedback WHERE ratedUser = \'" + entity +"\'";
 					ResultSet resultA = stmt.executeQuery(strA);
 					
 					
@@ -87,7 +87,7 @@
 
         <div align="center">
             <br>
-        	<a href="leaderboard.jsp">Return to Dashboard</a>
+        	<a href="leaderboard.jsp">View Leaderboard</a>
         	<br><br>
         	<a href="home.jsp">Return to Dashboard</a>
         </div>

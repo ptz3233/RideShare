@@ -12,8 +12,8 @@
         <div align="center">
             <h2>Ride request</h2>
             <form action="requestQuery.jsp" method="post">
-            <br/>Date: (Format: MM/DD/YYYY)<input type="date" name="date">
-            <br/>Time: (Format: HH:MM AM/PM)<input type="time" name="time">
+            <br/>Date: (Format: MM/DD/YYYY)<input type="text" name="date">
+            <br/>Time: (Format: HH:MM AM/PM)<input type="text" name="time">
             <br/>Pick up location: <select name="pickUpLocation">
  	 			<option value="Cook">Cook</option>
  				 <option value="Douglass">Douglass</option>

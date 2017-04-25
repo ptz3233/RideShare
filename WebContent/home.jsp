@@ -53,6 +53,58 @@
 	%>
 	<br><br>
 	
+	
+	<h1>Upcoming Rides</h1>
+		<%
+
+				//Create a connection string
+				String url2 = "jdbc:mysql://example.cl8qfbhvsols.us-east-1.rds.amazonaws.com:3306/RideShare";
+				//Load JDBC driver - the interface standardizing the connection procedure. Look at WEB-INF\lib for a mysql connector jar file, otherwise it fails.
+				Class.forName("com.mysql.jdbc.Driver");
+				//Create a connection to your DB
+				Connection con2 = DriverManager.getConnection(url2, "root", "password");
+
+				Statement stmt2 = con2.createStatement();
+				String entity = (String)session.getAttribute("user");
+				String str2 = "SELECT * FROM Ride WHERE driver = \'" + entity +"\' OR passengers LIKE \'%" + entity +"%\'";
+				ResultSet result2 = stmt2.executeQuery(str2);
+				
+				int counter=0;
+				out.println("<center><table style=\"width:80%\">");
+				while (result2.next()&&counter<15) {
+					
+					if(counter==0){
+						out.println("<tr>");
+						out.print("<td>"+"Date"+"</td>");
+						out.print("<td>"+"Time"+"</td>");
+						out.print("<td>"+"Driver"+"</td>");
+						out.print("<td>"+"Passengers"+"</td>");
+						out.print("<td>"+"Pickup Location"+"</td>");
+						out.print("<td>"+"Dropoff Location"+"</td>");
+						out.print("</tr>");
+					}
+					counter++;
+
+					out.println("<tr>");
+					out.print("<td>"+result2.getString("rideDate")+"</td>");
+					out.print("<td>"+result2.getString("pickUpTime")+"</td>");
+					out.print("<td>"+result2.getString("driver")+"</td>");
+					out.print("<td>"+result2.getString("passengers")+"</td>");
+					out.print("<td>"+result2.getString("pickUpLocation")+"</td>");
+					out.print("<td>"+result2.getString("dropOffLocation")+"</td>");
+					out.print("</tr>");				
+					
+					
+				}
+				out.println("</table>");
+				out.println("<br><br>");
+				if(counter==0)
+					out.println("You have no upcoming rides.");
+				out.println("</center>");
+				con.close();
+
+	%>
+	
 	<a href="scheduledRideRequests.jsp">See All Scheduled Requested Rides</a>
 	<br>
 	<a href="scheduledRideOffers.jsp">See All Scheduled Offered Rides</a>

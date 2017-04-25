@@ -10,7 +10,7 @@
 
 <h1>Request a ride here</h1>
         <div align="center">
-            <h2>Ride offer</h2>
+            <h2>Ride request</h2>
             <form action="requestQuery.jsp" method="post">
             <br/>Date: (Format: MM/DD/YYYY)<input type="date" name="date">
             <br/>Time: (Format: HH:MM AM/PM)<input type="time" name="time">

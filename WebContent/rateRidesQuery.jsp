@@ -53,7 +53,7 @@
 
 				Statement stmtA = con.createStatement();
 				String entityA = request.getParameter("use");
-				String strA = "SELECT * FROM pastRides WHERE driver = \'" + entityA +"\' OR passengers LIKE \'%" + entityA +"%\'";
+				String strA = "SELECT * FROM pastRides WHERE driver = \'" + entityA +"\' OR passengers = \'%" + entityA +"%\'";
 				ResultSet resultA = stmtA.executeQuery(strA);
 				
 				int counterA=0;

@@ -50,7 +50,7 @@
 			ps.setString(1, userFrom);
 			ps.setString(2, userTo);
 			ps.setString(3, content);
-			ps.setTimestamp(4, java.util.Date now = new java.util.Date(););
+			ps.setTimestamp(4, new java.sql.Timestamp(Calendar.getInstance().getTime().getTime()));
 			//Run the query against the DB
 			ps.executeUpdate();
 			
@@ -58,6 +58,7 @@
 			con.close();
 		}
 	%>
+	<br>
 	<a href="sendNewMessage.jsp">Back</a>
 	<br>
 	<a href="home.jsp">Dashboard</a>

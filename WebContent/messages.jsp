@@ -7,6 +7,6 @@
 <title>Messages</title>
 </head>
 <body>
-
+<a href='sendMessage.jsp'>Send a message.</a>
 </body>
 </html>

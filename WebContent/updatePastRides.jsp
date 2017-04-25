@@ -29,15 +29,29 @@
 	
 	String datestr = new String();
 	String[] parts = new String[3];
-	
+	String timestr = new String();
+	String timeparts[] = new String[2];
+	String AMorPM = new String();
 	
 	while(rs.next()){
 		
 		datestr = rs.getString("rideDate");
 		
+		timestr = rs.getString("pickUpTime");
+		
 		parts = datestr.split("/");
 		
+		timeparts = timestr.split(":");
 		
+		int hour = Integer.parseInt(timeparts[0]);
+		int minutes =Integer.parseInt(timeparts[1].substring(0,2));
+		
+		AMorPM = timeparts[1].substring(timeparts[1].length()-2);
+		
+		if(AMorPM.equals("PM")){
+			
+			hour = hour +12;
+		}
 		
 		int day = Integer.parseInt(parts[0]);
 		
@@ -53,7 +67,7 @@
 		
 		Calendar rideDate = Calendar.getInstance();
 		
-		rideDate.set(year,month,day);
+		rideDate.set(year,month,day,hour,minutes);
 		
 		
 		if(rideDate.after(now)){

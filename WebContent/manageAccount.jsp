@@ -9,6 +9,7 @@
 <title>Manage Account</title>
 </head>
 <body>
+		<
 		<h1>Current Account Settings</h1>
 		<%
 				//List<String> list = new ArrayList<String>();

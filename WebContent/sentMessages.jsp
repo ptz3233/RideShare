@@ -3,7 +3,6 @@
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
 <!-- Author: Zachary Iuso -->
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,11 +23,12 @@ td.col{
 }
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Advertisement Database</title>
+<title>Outbox</title>
 </head>
 <body>
-	<h1>Advertisement Database</h1>
 	
+	
+	<h3>Sent Messages</h3>
 	<%
 		//Create a connection string
 		String url = "jdbc:mysql://example.cl8qfbhvsols.us-east-1.rds.amazonaws.com:3306/RideShare";
@@ -38,41 +38,41 @@ td.col{
 		Connection con = DriverManager.getConnection(url, "root", "password");
 		
 		Statement stmt = con.createStatement();
-		String str = "SELECT * FROM ads ORDER BY buyer, adName";
+		String entity = (String)session.getAttribute("user");
+		String str = "SELECT * FROM messages WHERE userFrom = \'" + entity +"\' ORDER BY timeSent DESC";
 		ResultSet result = stmt.executeQuery(str);
 		
 		int counter=0;	
-		out.println("<center><table>");
+		out.println("<table>");
 		while (result.next()) {
 			
 			if(counter==0){
 				out.println("<tr>");
-				out.print("<th>"+"Ad Name"+"</th>");
-				out.print("<th>"+"Owner"+"</th>");
+				out.print("<th>"+"To"+"</th>");
 				out.print("<th>"+"Message"+"</th>");
-				out.print("<th>"+"Times Displayed"+"</th>");
+				out.print("<th>"+"Date Sent"+"</th>");
 				out.print("</tr>");
 			}
 			counter++;
 
 			out.println("<tr>");
-			out.print("<td width = \"20%\">"+result.getString("adName")+"</td>");
-			out.print("<td width = \"20%\">"+result.getString("buyer")+"</td>");
-			out.print("<td width = \"50%\">"+result.getString("adMessage")+"</td>");
-			out.print("<td width = \"10%\">"+result.getInt("timesDisplayed")+"</td>");
+			out.print("<td width = \"20%\">"+result.getString("userTo")+"</td>");
+			out.print("<td width = \"60%\">"+result.getString("content")+"</td>");
+			out.print("<td width = \"20%\">"+result.getTimestamp("timeSent")+"</td>");
 			out.print("</tr>");
 			
 		}
-		out.println("</table><br>");
-		
+		out.println("</table>");
 		
 		if(counter==0)
-			out.println("No ads found.");
-		out.println("</center>");
+			out.println("No sent messages.\n");
 		con.close();
 	%>
-	<a href="SSlogin.jsp">Return to Dashboard</a>
-		
-
+	<br><br>
+	<a href="home.jsp">Return to Dashboard</a>
+	&nbsp;
+	<a href="receivedMessages.jsp">View Inbox</a>
+	&nbsp;
+	<a href="sendNewMessage.jsp">Send a new message</a>
 </body>
 </html>

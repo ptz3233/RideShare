@@ -27,19 +27,18 @@
 		String entity = request.getParameter("userTo");
 		String str = "SELECT * FROM users WHERE userID = \'" + entity +"\'";
 		ResultSet result = stmt.executeQuery(str);
+		ResultSet tempRes = result;
 		
 		if (!result.next())
 			out.print("That recipient does not exist!\n");
 		
 		else{
-								
+			String email = result.getString("ruEmail");
 			String userTo = request.getParameter("userTo");
 			String content = request.getParameter("content");
 			String userFrom = (String)session.getAttribute("user");
-
-	        java.text.SimpleDateFormat df = new java.text.SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-	        java.util.Date now = new java.util.Date();
-	        String timeSent = df.format(now);
+			
+	        Timestamp timeSent = new java.sql.Timestamp(Calendar.getInstance().getTime().getTime());
 			
 			//Make an insert statement for the users table:
 			String insert = "INSERT INTO messages(userFrom, userTo, content, timeSent) " + "VALUES (?, ?, ?, ?)";
@@ -50,9 +49,28 @@
 			ps.setString(1, userFrom);
 			ps.setString(2, userTo);
 			ps.setString(3, content);
-			ps.setTimestamp(4, new java.sql.Timestamp(Calendar.getInstance().getTime().getTime()));
+			ps.setTimestamp(4, timeSent);
 			//Run the query against the DB
 			ps.executeUpdate();
+			
+			//This will simulate forwarding messages to users' emails by inserting them into table SENT_EMAIL if recipient allows email forwarding
+			String forCheck = "SELECT * FROM endUsers WHERE userID = \'" + userTo + "\'";
+			ResultSet rs = stmt.executeQuery(forCheck);
+			if (!rs.next() || rs.getInt("forwardToEmail")==0)
+				System.out.println("This user does NOT allow email forwarding");
+			else
+			{
+				System.out.println("This user allows email forwarding");
+				String strSim = "INSERT INTO SENT_EMAIL(emailTo, userFrom, sentTime, subject, content) " + "VALUES (?, ?, ?, ?, ?)";
+				PreparedStatement psSim = con.prepareStatement(strSim);
+				psSim.setString(1, email);
+				psSim.setString(2, userFrom);
+				psSim.setTimestamp(3, timeSent);
+				psSim.setString(4, "Forward: Message from " + userFrom);
+				psSim.setString(5, content);
+				psSim.executeUpdate();
+			}			
+			
 			
 			out.print("Message sent.");
 			con.close();

@@ -27,13 +27,14 @@
 					</select><br>
 		            Sort By:
 		            <select name="sortType">
-						<option value="date">Date</option>
-						<option value="username">User ID</option>
-						<option value="origin">Origin</option>
-						<option value="dest">Destination</option>
-					</select><br>
+						<option value="rideDate DESC, pickupTime">Date</option>
+						<option value="driver">Driver User ID</option>
+						<option value="passengers">Passenger User ID</option>
+						<option value="pickUpLocation">Origin</option>
+						<option value="dropOffLocation">Destination</option>
+					</select><br><br>
 		            <input type="submit" value="Submit"><br>
-	            </form>
+	            </form><br><br>
 	            <a href="adminlogin.jsp">Cancel</a>
 			</div>
 

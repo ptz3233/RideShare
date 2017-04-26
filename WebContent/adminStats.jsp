@@ -20,10 +20,12 @@
 		            Time of Day (optional):<input type="text" name="time"><br>
 		            Time Span:
 		            <select name="timespan">
-						<option value="day">past day</option>
-						<option value="month">past month</option>
-						<option value="semester">past semester</option>
-						<option value="year">past year</option>
+		            	<option value="n">no limit</option>
+						<option value="d">today</option>
+						<option value="d">this week</option>
+						<option value="m">this month</option>
+						<option value="s">this semester</option>
+						<option value="y">this year</option>
 					</select><br>
 		            Sort By:
 		            <select name="sortType">

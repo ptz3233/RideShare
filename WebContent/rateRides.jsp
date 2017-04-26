@@ -61,6 +61,16 @@
 
 	%>
 
+	<h1>See Ratings and Comments for a User (including yourself)</h1>
+        <div align="center">
+            <form action="userRatings.jsp" method="post">
+            	<br/>User (see Usernames from above chart):<input type="text" name="user">
+            <br/><input type="submit" value="See Ratings and Comments">
+            </form>
+        	<br>
+        	<a href="home.jsp">Return to Dashboard</a>
+        </div>
+
 
 	<h1>Rate and Comment on a Past Ride</h1>
         <div align="center">

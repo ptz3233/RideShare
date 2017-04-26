@@ -33,7 +33,7 @@
 	String driver= new String();
 	String carName = new String();
 	String oID = new String();
-	
+	Boolean recurring = false;
 	 while (rs.next()) {
           offerDate = rs.getString("offerDate");
        pickUpTime = rs.getString("pickUpTime");
@@ -42,6 +42,7 @@
           driver = rs.getString("driver");
           carName = rs.getString("carName");
           oID = Integer.toString(rs.getInt("offerID"));
+          recurring = rs.getBoolean("recurring");
      }
 	
 	String findMatch = "SELECT * from rideRequest r WHERE  r.requestDate = \"" + offerDate + "\" AND r.pickUpTime =\"" +pickUpTime + "\" AND r.dropOffLocation = \"" + dropOffLocation +  "\" and r.pickUpLocation = \"" + pickUpLocation +"\"";
@@ -55,6 +56,44 @@
 	
 	while (r2.next()){
 		
+		if(recurring==true && r2.getBoolean("recurring")== true){
+			String newRides = new String();
+			
+			for(int i = 0; i<5; i++){
+				newRides = "INSERT INTO Ride (rideDate, pickUpTime, pickUpLocation, driver, passengers, carName, dropOffLocation)" + "VALUES(?,?,?,?,?,?,?)";
+				PreparedStatement ps = con.prepareStatement(newRides);
+				ps.setString(1, offerDate);
+				ps.setString(2, pickUpTime);
+				ps.setString(3, pickUpLocation);
+				ps.setString(4, driver);
+				ps.setString(5, r2.getString("requester"));
+				ps.setString(6, carName);
+				ps.setString(7, dropOffLocation);
+				
+				ps.executeUpdate();
+				
+				String[] parts = offerDate.split("/");
+				
+				int days = Integer.parseInt(parts[1]);
+				
+				days = days+7;
+				
+				if(days>31){
+					days = days - 31;
+					int month = Integer.parseInt(parts[0]);
+					month++;
+					parts[0] = Integer.toString(month);
+					
+				}
+				parts[1] = Integer.toString(days);
+								
+				offerDate = parts[0] + "/" + parts[1] + "/" + parts[2];
+			}
+			
+			
+		}else{
+		
+		
 		String newRide = "INSERT INTO Ride (rideDate, pickUpTime, pickUpLocation, driver, passengers, carName, dropOffLocation)" + "VALUES(?,?,?,?,?,?,?)";
 		PreparedStatement ps = con.prepareStatement(newRide);
 		ps.setString(1, offerDate);
@@ -64,8 +103,11 @@
 		ps.setString(5, r2.getString("requester"));
 		ps.setString(6, carName);
 		ps.setString(7, dropOffLocation);
-		String rID = Integer.toString(r2.getInt("requestID"));
+		
 		ps.executeUpdate();
+		
+	}
+		String rID = Integer.toString(r2.getInt("requestID"));
 		String delrequest = ("DELETE FROM rideRequest WHERE requestID = ?");
 		PreparedStatement del1 = con.prepareStatement(delrequest);
 

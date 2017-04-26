@@ -72,7 +72,7 @@
 					out.println("Rides Given: "+ridesGiven+"<br>");
 					out.println("    Per Month: "+ridesGivenM+"<br>");
 					out.println("    Per Semester: "+ridesGivenS+"<br>");
-
+					out.println("Cash Earned: $"+cash+"<br>");
 					out.println("</center>");
 					out.println();
 					

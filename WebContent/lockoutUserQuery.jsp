@@ -50,7 +50,7 @@ if(request.getParameter("timespan").equals("year")){
 }
 if(request.getParameter("timespan").equals("forever")){
 	
-	lockOutDate.add(Calendar.YEAR, 1);
+	lockOutDate.add(Calendar.YEAR, 999);
 	
 }
 

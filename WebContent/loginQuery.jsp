@@ -64,7 +64,42 @@
 				//System.out.print(userStatus);
 				
 				if(userStatus.compareTo("endUser")==0){
+					String finduser = "SELECT * from endUsers WHERE userID = \"" + request.getParameter("username") + "\"";
+					//System.out.println(finduser);
+					Statement stmt2 = con.createStatement();
+					ResultSet rs2 = stmt2.executeQuery(finduser);
+					
+					rs2.next();
+					
+					if(rs2.getBoolean("lockedOutStatus")==true){
+						java.sql.Date lockdate = rs2.getDate("lockedOutTimeRemaining");
+						
+						Calendar now = Calendar.getInstance();
+						Calendar lock = Calendar.getInstance();
+						
+						lock.setTime(lockdate);
+						
+						if(now.after(lock)){
+							String unlock = "UPDATE endUsers SET lockedOutStatus=0 WHERE userID = \"" + request.getParameter("username") + "\"";
+							Statement stmt3 = con.createStatement();
+							stmt3.executeUpdate(unlock);
+							
+							
+							response.sendRedirect("home.jsp");
+							
+						}else{
+							out.print("You are locked out");
+						}
+						
+						
+						
+					}else{
+					
+					
+					
+					
 					response.sendRedirect("home.jsp");
+					}
 				}else if(userStatus.compareTo("admin")==0){
 					response.sendRedirect("adminlogin.html");
 				}else if(userStatus.compareTo("systemSupport")==0){

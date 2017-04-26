@@ -43,12 +43,12 @@ if(request.getParameter("timespan").equals("semester")){
 	
 }
 
-if(request.getParameter("timespan").equals("semester")){
+if(request.getParameter("timespan").equals("year")){
 	
 	lockOutDate.add(Calendar.YEAR, 1);
 	
 }
-if(request.getParameter("timespan").equals("semester")){
+if(request.getParameter("timespan").equals("forever")){
 	
 	lockOutDate.add(Calendar.YEAR, 1);
 	

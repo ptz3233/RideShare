@@ -41,7 +41,8 @@ td.col{
 		String str = "SELECT * FROM ads ORDER BY buyer, adName";
 		ResultSet result = stmt.executeQuery(str);
 		
-		int counter=0;	
+		int counter=0;
+		int revenue = 0;
 		out.println("<center><table>");
 		while (result.next()) {
 			
@@ -51,6 +52,7 @@ td.col{
 				out.print("<th>"+"Owner"+"</th>");
 				out.print("<th>"+"Message"+"</th>");
 				out.print("<th>"+"Times Displayed"+"</th>");
+				out.print("<th>"+"Money Collected (at $1/Display)"+"</th>");
 				out.print("</tr>");
 			}
 			counter++;
@@ -58,19 +60,24 @@ td.col{
 			out.println("<tr>");
 			out.print("<td width = \"20%\">"+result.getString("adName")+"</td>");
 			out.print("<td width = \"20%\">"+result.getString("buyer")+"</td>");
-			out.print("<td width = \"50%\">"+result.getString("adMessage")+"</td>");
+			out.print("<td width = \"40%\">"+result.getString("adMessage")+"</td>");
 			out.print("<td width = \"10%\">"+result.getInt("timesDisplayed")+"</td>");
+			out.print("<td width = \"10%\">$"+result.getInt("timesDisplayed")+".00</td>");
 			out.print("</tr>");
-			
+			revenue += result.getInt("timesDisplayed");
 		}
-		out.println("</table><br>");
-		
+		out.println("</table></center><br>");
 		
 		if(counter==0)
 			out.println("No ads found.");
-		out.println("</center>");
+		else
+		{
+			out.println("Revenue to be collected = $" + revenue + ".00");
+		}
+
 		con.close();
 	%>
+	<br>
 	<a href="SSlogin.jsp">Return to Dashboard</a>
 		
 

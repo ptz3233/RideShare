@@ -95,24 +95,24 @@
 					ps2.setString(4, request.getParameter("phone"));
 					
 					if(request.getParameter("infoVis").equals("t")) {
-	                    ps2.setString(7, "1");
+	                    ps2.setBoolean(7, true);
 	                }else{
-	                	ps2.setString(7, "0");
+	                	ps2.setBoolean(7, false);
 	                }
 					
 					//out.println(request.getParameter("forwardToEmail"));
 					
-					if(request.getParameter("forwardToEmail")!=null){
-						ps2.setString(5, "1");
+					if(request.getParameter("forwardToEmail")==null){
+						ps2.setBoolean(5, false);
 					}else{
-						ps2.setString(5, "0");
+						ps2.setBoolean(5, true);
 					}
 					
 					
-					if(request.getParameter("forwardToTest")!=null){
-						ps2.setString(6, "1");
+					if(request.getParameter("forwardToTest")==null){
+						ps2.setBoolean(6, false);
 					}else{
-						ps2.setString(6, "0");
+						ps2.setBoolean(6, true);
 					}
 					
 					ps2.executeUpdate();

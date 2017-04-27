@@ -91,5 +91,5 @@
 		
 	}
 		
-		
+		response.sendRedirect("home.jsp");
 		%>

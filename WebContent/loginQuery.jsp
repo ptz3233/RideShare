@@ -98,7 +98,7 @@
 					
 					
 					
-					response.sendRedirect("home.jsp");
+					response.sendRedirect("updatePastRides.jsp");
 					}
 				}else if(userStatus.compareTo("admin")==0){
 					response.sendRedirect("adminlogin.html");
